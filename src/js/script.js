@@ -1,892 +1,568 @@
-setInterval(showTime, 1000);
-function showTime() {
-  let time = new Date();
-  let hour = time.getHours();
-  let min = time.getMinutes();
-  am_pm = "AM";
+! function(e) {
+  var t = {};
 
-  if (hour > 12) {
-    hour -= 12;
-    am_pm = "PM";
+  function n(a) {
+    if (t[a]) return t[a].exports;
+    var u = t[a] = {
+      i: a,
+      l: !1,
+      exports: {}
+    };
+    return e[a].call(u.exports, u, u.exports, n), u.l = !0, u.exports
   }
-  if (hour == 0) {
-    hr = 12;
-    am_pm = "AM";
-  }
-
-  //hour = hour < 10 ? "0" + hour : hour;
-  min = min < 10 ? "0" + min : min;
-
-  let currentTime = hour + ":" + min;
-
-  // document.getElementById("clock")
-  // 		.innerHTML = currentTime;
-  //console.log(currentTime);
-  document.getElementById(
-    "time_curr"
-  ).innerHTML = `${hour.toString()}<strong class="clockanima">:</strong>${min} <span>${am_pm}</span>`;
-}
-showTime();
-
-function set_visibility(id) {
-  localStorage.setItem(id, JSON.stringify(document.getElementById(id).checked));
-}
-window.set_visibility = set_visibility;
-
-function updateColor(str, colorStr) {
-  const colorID = ["red", "blue", "cyan", "yellow", "orange", "lime"];
-  colorID.forEach((color) => {
-    const node = document.getElementById(`${str}_color_${color}`);
-    if (node.classList.contains("active")) {
-      node.classList.remove("active");
-    }
-    if (colorStr === color) {
-      node.classList.add("active");
-      localStorage.setItem(`${str}_color`, color);
-    }
-  });
-}
-window.updateColor = updateColor;
-
-function showhideHeader() {
-  const checked = document.getElementById("show_header").checked;
-  if (checked) {
-    document.getElementById("header").classList.remove("hide");
-  } else {
-    document.getElementById("header").classList.add("hide");
-  }
-  localStorage.setItem("show_header", JSON.stringify(checked));
-}
-window.showhideHeader = showhideHeader;
-
-function update() {
-  const showHeader = localStorage.getItem("show_header")
-    ? JSON.parse(localStorage.getItem("show_header"))
-    : true;
-
-  const showTIME = localStorage.getItem("show_time")
-    ? JSON.parse(localStorage.getItem("show_time"))
-    : true;
-  const showCPU = localStorage.getItem("show_cpu")
-    ? JSON.parse(localStorage.getItem("show_cpu"))
-    : true;
-  const showCPUClock = localStorage.getItem("show_cpu_clock")
-    ? JSON.parse(localStorage.getItem("show_cpu_clock"))
-    : true;
-  const showRAM = localStorage.getItem("show_ram")
-    ? JSON.parse(localStorage.getItem("show_ram"))
-    : true;
-  const showFPS = localStorage.getItem("show_fps")
-    ? JSON.parse(localStorage.getItem("show_fps"))
-    : true;
-  const showGPU = localStorage.getItem("show_gpu")
-    ? JSON.parse(localStorage.getItem("show_gpu"))
-    : true;
-  const showGPUClock = localStorage.getItem("show_gpu_clock")
-    ? JSON.parse(localStorage.getItem("show_gpu_clock"))
-    : true;
-  const showVRAM = localStorage.getItem("show_vram")
-    ? JSON.parse(localStorage.getItem("show_vram"))
-    : true;
-
-  const time_color = localStorage.getItem("time_color");
-  const cpu_color = localStorage.getItem("cpu_color");
-  const cpu_clock_color = localStorage.getItem("cpu_clock_color");
-  const ram_color = localStorage.getItem("ram_color");
-  const fps_color = localStorage.getItem("fps_color");
-  const gpu_color = localStorage.getItem("gpu_color");
-  const gpu_clock_color = localStorage.getItem("gpu_clock_color");
-  const vram_color = localStorage.getItem("vram_color");
-
-  if (showHeader) {
-    document.getElementById("header").classList.remove("hide");
-  } else {
-    document.getElementById("header").classList.add("hide");
-  }
-  document.getElementById("show_header").checked = showHeader;
-
-  updateColor("time", time_color ? time_color : "lime");
-  document.getElementById("show_time").checked = showTIME;
-  if (showTIME) {
-    const color = time_color ? time_color : "lime";
-    document
-      .getElementById("time_id1")
-      .setAttribute("class", `ri-time-line ${color}`);
-    document
-      .getElementById("time_id2")
-      .setAttribute("class", `pill-txt ${color}`);
-    document
-      .getElementById("time_curr")
-      .setAttribute("class", `load loadClock ${color}`);
-    document
-      .getElementById("time_id3")
-      .setAttribute("class", `pillDown-txt ${color}`);
-    document.getElementById("time").style["display"] = "flex";
-  } else {
-    document.getElementById("time").style["display"] = "none";
+  n.m = e, n.c = t, n.d = function(e, t, a) {
+    n.o(e, t) || Object.defineProperty(e, t, {
+      enumerable: !0,
+      get: a
+    })
+  }, n.r = function(e) {
+    "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+      value: "Module"
+    }), Object.defineProperty(e, "__esModule", {
+      value: !0
+    })
+  }, n.t = function(e, t) {
+    if (1 & t && (e = n(e)), 8 & t) return e;
+    if (4 & t && "object" == typeof e && e && e.__esModule) return e;
+    var a = Object.create(null);
+    if (n.r(a), Object.defineProperty(a, "default", {
+        enumerable: !0,
+        value: e
+      }), 2 & t && "string" != typeof e)
+      for (var u in e) n.d(a, u, function(t) {
+        return e[t]
+      }.bind(null, u));
+    return a
+  }, n.n = function(e) {
+    var t = e && e.__esModule ? function() {
+      return e.default
+    } : function() {
+      return e
+    };
+    return n.d(t, "a", t), t
+  }, n.o = function(e, t) {
+    return Object.prototype.hasOwnProperty.call(e, t)
+  }, n.p = "", n(n.s = 0)
+}([function(e, t) {
+  function n() {
+    let e = new Date,
+      t = e.getHours(),
+      n = e.getMinutes();
+    am_pm = "", t > 12 && (t -= 0, am_pm = ""), 0 == t && (hr = 12, am_pm = ""),  t = t < 10 ? "0" + t : t, n = n < 10 ? "0" + n : n;
+    document.getElementById("time_curr").innerHTML = `${t.toString()}<strong class="clockanima">:</strong>${n} <span>${am_pm}</span>`
   }
 
-  updateColor("cpu", cpu_color ? cpu_color : "blue");
-  document.getElementById("show_cpu").checked = showCPU;
-  if (showCPU) {
-    const color = cpu_color ? cpu_color : "blue";
-    document
-      .getElementById("cpu_ico")
-      .setAttribute("class", `ri-cpu-fill ${color}`);
-    document
-      .getElementById("cpu_temp")
-      .setAttribute("class", `pill-txt ${color}`);
-    document.getElementById("cpu_load").setAttribute("class", `load ${color}`);
-    document
-      .getElementById("cpu_fan")
-      .setAttribute("class", `pillDown-txt ${color}`);
-
-    document.getElementById("cpu").style["display"] = "flex";
-  } else {
-    document.getElementById("cpu").style["display"] = "none";
+  function a(e, t) {
+    ["red", "blue", "cyan", "yellow", "orange", "lime"].forEach(n => {
+      const a = document.getElementById(`${e}_color_${n}`);
+      a.classList.contains("active") && a.classList.remove("active"), t === n && (a.classList.add("active"), localStorage.setItem(e + "_color", n))
+    })
   }
 
-  updateColor("cpu_clock", cpu_clock_color ? cpu_clock_color : "blue");
-  document.getElementById("show_cpu_clock").checked = showCPUClock;
-  if (showCPUClock) {
-    const color = cpu_clock_color ? cpu_clock_color : "blue";
-    document
-      .getElementById("cpu_clock_speed_ico")
-      .setAttribute("class", `ri-pulse-fill ${color}`);
-    document
-      .getElementById("cpu_clock_dummy1")
-      .setAttribute("class", `pill-txt ${color}`);
-    document
-      .getElementById("cpu_curr_clock")
-      .setAttribute("class", `load loadClock ${color}`);
-    document
-      .getElementById("cpu_clock_dummy2")
-      .setAttribute("class", `pillDown-txt ${color}`);
-    document.getElementById("cpu_clock").style["display"] = "flex";
-  } else {
-    document.getElementById("cpu_clock").style["display"] = "none";
+  function u() {
+    const e = !localStorage.getItem("show_header") || JSON.parse(localStorage.getItem("show_header")),
+      t = !localStorage.getItem("show_time") || JSON.parse(localStorage.getItem("show_time")),
+      n = !localStorage.getItem("show_cpu") || JSON.parse(localStorage.getItem("show_cpu")),
+      u = !localStorage.getItem("show_cpu_clock") || JSON.parse(localStorage.getItem("show_cpu_clock")),
+      l = !localStorage.getItem("show_ram") || JSON.parse(localStorage.getItem("show_ram")),
+      m = !localStorage.getItem("show_fps") || JSON.parse(localStorage.getItem("show_fps")),
+      r = !localStorage.getItem("show_gpu") || JSON.parse(localStorage.getItem("show_gpu")),
+      o = !localStorage.getItem("show_gpu_clock") || JSON.parse(localStorage.getItem("show_gpu_clock")),
+      c = !localStorage.getItem("show_vram") || JSON.parse(localStorage.getItem("show_vram")),
+      d = localStorage.getItem("time_color"),
+      s = localStorage.getItem("cpu_color"),
+      i = localStorage.getItem("cpu_clock_color"),
+      g = localStorage.getItem("ram_color"),
+      p = localStorage.getItem("fps_color"),
+      _ = localStorage.getItem("gpu_color"),
+      y = localStorage.getItem("gpu_clock_color"),
+      f = localStorage.getItem("vram_color");
+    if (e ? document.getElementById("header").classList.remove("hide") : document.getElementById("header").classList.add("hide"), document.getElementById("show_header").checked = e, a("time", d || "lime"), document.getElementById("show_time").checked = t, t) {
+      const e = d || "lime";
+      document.getElementById("time_id1").setAttribute("class", "ri-time-line " + e), document.getElementById("time_id2").setAttribute("class", "pill-txt " + e), document.getElementById("time_curr").setAttribute("class", "load loadClock " + e), document.getElementById("time_id3").setAttribute("class", "pillDown-txt " + e), document.getElementById("time").style.display = "flex"
+    } else document.getElementById("time").style.display = "none";
+    if (a("cpu", s || "blue"), document.getElementById("show_cpu").checked = n, n) {
+      const e = s || "blue";
+      document.getElementById("cpu_ico").setAttribute("class", "ri-cpu-fill " + e), document.getElementById("cpu_temp").setAttribute("class", "pill-txt " + e), document.getElementById("cpu_load").setAttribute("class", "load " + e), document.getElementById("cpu_fan").setAttribute("class", "pillDown-txt " + e), document.getElementById("cpu").style.display = "flex"
+    } else document.getElementById("cpu").style.display = "none";
+    if (a("cpu_clock", i || "blue"), document.getElementById("show_cpu_clock").checked = u, u) {
+      const e = i || "blue";
+      document.getElementById("cpu_clock_speed_ico").setAttribute("class", "ri-pulse-fill " + e), document.getElementById("cpu_clock_dummy1").setAttribute("class", "pill-txt " + e), document.getElementById("cpu_curr_clock").setAttribute("class", "load loadClock " + e), document.getElementById("cpu_clock_dummy2").setAttribute("class", "pillDown-txt " + e), document.getElementById("cpu_clock").style.display = "flex"
+    } else document.getElementById("cpu_clock").style.display = "none";
+    if (a("gpu", _ || "orange"), document.getElementById("show_gpu").checked = r, r) {
+      const e = _ || "orange";
+      document.getElementById("gpu_ico").setAttribute("class", "ri-gamepad-fill " + e), document.getElementById("gpu_temp").setAttribute("class", "pill-txt " + e), document.getElementById("gpu_load").setAttribute("class", "load " + e), document.getElementById("gpu_fan").setAttribute("class", "pillDown-txt " + e), document.getElementById("gpu").style.display = "flex"
+    } else document.getElementById("gpu").style.display = "none";
+    if (a("gpu_clock", y || "orange"), document.getElementById("show_gpu_clock").checked = o, o) {
+      const e = y || "blue";
+      document.getElementById("gpu_clock_speed_ico").setAttribute("class", "ri-pulse-fill " + e), document.getElementById("gpu_clock_dummy1").setAttribute("class", "pill-txt " + e), document.getElementById("gpu_curr_clock").setAttribute("class", "load loadClock " + e), document.getElementById("gpu_clock_dummy2").setAttribute("class", "pillDown-txt " + e), document.getElementById("gpu_clock").style.display = "flex"
+    } else document.getElementById("gpu_clock").style.display = "none";
+    if (a("ram", g || "lime"), document.getElementById("show_ram").checked = l, l) {
+      const e = g || "lime";
+      document.getElementById("mem_ico").setAttribute("class", "ri-database-fill " + e), document.getElementById("mem_load").setAttribute("class", "load " + e), document.getElementById("mem_used").setAttribute("class", "pillDown-txt " + e), document.getElementById("ram").style.display = "none"
+    } else document.getElementById("ram").style.display = "none";
+    if (a("fps", p || "yellow"), document.getElementById("show_fps").checked = m, m) {
+      const e = p || "yellow";
+      document.getElementById("fps_ico").setAttribute("class", "ri-computer-fill " + e), document.getElementById("fps_load").setAttribute("class", "load " + e), document.getElementById("fps_max").setAttribute("class", "pillDown-txt " + e), document.getElementById("fps").style.display = "flex"
+    } else document.getElementById("fps").style.display = "none";
+    if (a("vram", f || "yellow"), document.getElementById("show_vram").checked = c, c) {
+      const e = f || "yellow";
+      document.getElementById("vram_ico").setAttribute("class", "ri-sd-card-mini-fill " + e), document.getElementById("vram_load").setAttribute("class", "load " + e), document.getElementById("vram_used").setAttribute("class", "pillDown-txt " + e), document.getElementById("vram").style.display = "none"
+    } else document.getElementById("vram").style.display = "none"
   }
-
-  updateColor("gpu", gpu_color ? gpu_color : "orange");
-  document.getElementById("show_gpu").checked = showGPU;
-  if (showGPU) {
-    const color = gpu_color ? gpu_color : "orange";
-    document
-      .getElementById("gpu_ico")
-      .setAttribute("class", `ri-gamepad-fill ${color}`);
-    document
-      .getElementById("gpu_temp")
-      .setAttribute("class", `pill-txt ${color}`);
-    document.getElementById("gpu_load").setAttribute("class", `load ${color}`);
-    document
-      .getElementById("gpu_fan")
-      .setAttribute("class", `pillDown-txt ${color}`);
-    document.getElementById("gpu").style["display"] = "flex";
-  } else {
-    document.getElementById("gpu").style["display"] = "none";
-  }
-
-  updateColor("gpu_clock", gpu_clock_color ? gpu_clock_color : "orange");
-  document.getElementById("show_gpu_clock").checked = showGPUClock;
-  if (showGPUClock) {
-    const color = gpu_clock_color ? gpu_clock_color : "blue";
-    document
-      .getElementById("gpu_clock_speed_ico")
-      .setAttribute("class", `ri-pulse-fill ${color}`);
-    document
-      .getElementById("gpu_clock_dummy1")
-      .setAttribute("class", `pill-txt ${color}`);
-    document
-      .getElementById("gpu_curr_clock")
-      .setAttribute("class", `load loadClock ${color}`);
-    document
-      .getElementById("gpu_clock_dummy2")
-      .setAttribute("class", `pillDown-txt ${color}`);
-    document.getElementById("gpu_clock").style["display"] = "flex";
-  } else {
-    document.getElementById("gpu_clock").style["display"] = "none";
-  }
-
-  updateColor("ram", ram_color ? ram_color : "lime");
-  document.getElementById("show_ram").checked = showRAM;
-  if (showRAM) {
-    const color = ram_color ? ram_color : "lime";
-    document
-      .getElementById("mem_ico")
-      .setAttribute("class", `ri-database-fill ${color}`);
-    document.getElementById("mem_load").setAttribute("class", `load ${color}`);
-    document
-      .getElementById("mem_used")
-      .setAttribute("class", `pillDown-txt ${color}`);
-    document.getElementById("ram").style["display"] = "flex";
-  } else {
-    document.getElementById("ram").style["display"] = "none";
-  }
-
-  updateColor("fps", fps_color ? fps_color : "yellow");
-  document.getElementById("show_fps").checked = showFPS;
-  if (showFPS) {
-    const color = fps_color ? fps_color : "yellow";
-    document
-      .getElementById("fps_ico")
-      .setAttribute("class", `ri-computer-fill ${color}`);
-    document.getElementById("fps_load").setAttribute("class", `load ${color}`);
-    document
-      .getElementById("fps_max")
-      .setAttribute("class", `pillDown-txt ${color}`);
-    document.getElementById("fps").style["display"] = "flex";
-  } else {
-    document.getElementById("fps").style["display"] = "none";
-  }
-
-  updateColor("vram", vram_color ? vram_color : "yellow");
-  document.getElementById("show_vram").checked = showVRAM;
-  if (showVRAM) {
-    const color = vram_color ? vram_color : "yellow";
-    document
-      .getElementById("vram_ico")
-      .setAttribute("class", `ri-sd-card-mini-fill ${color}`);
-    document.getElementById("vram_load").setAttribute("class", `load ${color}`);
-    document
-      .getElementById("vram_used")
-      .setAttribute("class", `pillDown-txt ${color}`);
-    document.getElementById("vram").style["display"] = "flex";
-  } else {
-    document.getElementById("vram").style["display"] = "none";
-  }
-}
-window.update = update;
-
-// Setting Window Control
-function showhideSettings() {
-  const isHide = document
-    .getElementById("settings")
-    .classList.contains("hideSettings");
-
-  if (isHide) {
-    document.getElementById("settings").classList.remove("hideSettings");
-    document.getElementById("open_settings").style["display"] = "none";
-  } else {
-    document.getElementById("settings").classList.add("hideSettings");
-    document.getElementById("open_settings").style["display"] = "block";
-  }
-}
-window.showhideSettings = showhideSettings;
-
-// OnChange callbacks
-function onCPU_Usage() {
-  document.getElementById(
-    "cpu_load"
-  ).innerHTML = `${Hardware.CPU.usage.current.value}<span> ${Hardware.CPU.usage.unit.value}</span>`;
-}
-function onCPU_Temp() {
-  document.getElementById(
-    "cpu_temp"
-  ).innerHTML = `${Hardware.CPU.temperature.current.value}<span> ${Hardware.CPU.temperature.unit.value}</span>`;
-
-  const c = document.getElementById("cpu");
-  if (Hardware.CPU.temperature.current.value > 90) {
-    c.classList.add("warning");
-  } else {
-    c.classList.remove("warning");
-  }
-}
-function onCPU_Fan() {
-  const speed = 100 - (Hardware.CPU.fan.current.value / 3000) * 100;
-  const ms = parseInt(speed >= 100 ? 0 : speed * 7);
-
-  document.getElementById(
-    "cpu_fan"
-  ).innerHTML = `${Hardware.CPU.fan.current.value}<span>${Hardware.CPU.fan.unit.value}</span>`;
-
-  document.getElementById(
-    "cpu_fan_anima"
-  ).style = `animation: spin ${ms}ms linear infinite;`;
-}
-function onCPU_Clock() {
-  document.getElementById("cpu_curr_clock").innerHTML = `${
-    Hardware.CPU.clock.current.value
-  }<span> ${Hardware.CPU.clock.unit.value.toLocaleUpperCase()}</span>`;
-}
-function onGPU_Temp() {
-  document.getElementById(
-    "gpu_temp"
-  ).innerHTML = `${Hardware.GPU.temperature.current.value}<span> ${Hardware.GPU.temperature.unit.value}</span>`;
-
-  const g = document.getElementById("gpu");
-  if (Hardware.GPU.temperature.current.value > 90) {
-    g.classList.add("warning");
-  } else {
-    g.classList.remove("warning");
-  }
-}
-function onGPU_Usage() {
-  document.getElementById(
-    "gpu_load"
-  ).innerHTML = `${Hardware.GPU.usage.current.value}<span> ${Hardware.GPU.usage.unit.value}</span>`;
-}
-function onGPU_Fan() {
-  const speed = 100 - (Hardware.GPU.fan.current.value / 4000) * 100;
-  const ms = parseInt(speed >= 100 ? 0 : speed * 7);
-
-  document.getElementById(
-    "gpu_fan"
-  ).innerHTML = `${Hardware.GPU.fan.current.value}<span>${Hardware.GPU.fan.unit.value}</span>`;
-
-  document.getElementById(
-    "gpu_fan_anima"
-  ).style = `animation: spin ${ms}ms linear infinite;`;
-}
-function onGPU_Clock() {
-  document.getElementById("gpu_curr_clock").innerHTML = `${
-    Hardware.GPU.clock.current.value
-  }<span> ${Hardware.GPU.clock.unit.value.toLocaleUpperCase()}</span>`;
-}
-function onMemory_Usage() {
-  document.getElementById(
-    "mem_load"
-  ).innerHTML = `${Hardware.Memory.usage.current.value}<span> ${Hardware.Memory.usage.unit.value}</span>`;
-}
-function onMemory_Used() {
-  document.getElementById(
-    "mem_used"
-  ).innerHTML = `${Hardware.Memory.used.current.value}<span> ${Hardware.Memory.used.unit.value}</span>`;
-}
-function onVRam_Usage() {
-  document.getElementById(
-    "vram_load"
-  ).innerHTML = `${Hardware.GPU.vram.usage.current.value}<span> ${Hardware.GPU.vram.usage.unit.value}</span>`;
-}
-function onVRam_Used() {
-  document.getElementById(
-    "vram_used"
-  ).innerHTML = `${Hardware.GPU.vram.used.current.value}<span> ${Hardware.GPU.vram.used.unit.value}</span>`;
-}
-function onMisc_Fps() {
-  document.getElementById(
-    "fps_load"
-  ).innerHTML = `${Hardware.Misc.fps.current.value}<span> ${Hardware.Misc.fps.unit.value}</span>`;
-}
-
-// References
-const Hardware = {
-  CPU: {
-    name: {
-      value: "CPU",
-      ref: document.getElementById("cpu_name"),
-    },
-    temperature: {
-      unit: {
-        value: "",
-        ref: document.getElementById("cpu_temp_unit"),
+  setInterval(n, 1e3), n(), window.set_visibility = function(e) {
+    localStorage.setItem(e, JSON.stringify(document.getElementById(e).checked))
+  }, window.updateColor = a, window.showhideHeader = function() {
+    const e = document.getElementById("show_header").checked;
+    e ? document.getElementById("header").classList.remove("hide") : document.getElementById("header").classList.add("hide"), localStorage.setItem("show_header", JSON.stringify(e))
+  }, window.update = u, window.showhideSettings = function() {
+    document.getElementById("settings").classList.contains("hideSettings") ? (document.getElementById("settings").classList.remove("hideSettings"), document.getElementById("open_settings").style.display = "none") : (document.getElementById("settings").classList.add("hideSettings"), document.getElementById("open_settings").style.display = "block")
+  };
+  const l = {
+    CPU: {
+      name: {
+        value: "CPU",
+        ref: document.getElementById("cpu_name")
       },
-      min: {
-        value: 0,
-        ref: document.getElementById("cpu_temp_min"),
-      },
-      current: {
-        value: 0,
-        ref: document.getElementById("cpu_temp_curr"),
-      },
-      max: {
-        value: 0,
-        ref: document.getElementById("cpu_temp_max"),
-      },
-    },
-    usage: {
-      unit: {
-        value: "",
-        ref: document.getElementById("cpu_usage_unit"),
-      },
-      min: {
-        value: 0,
-        ref: document.getElementById("cpu_usage_min"),
-      },
-      current: {
-        value: 0,
-        ref: document.getElementById("cpu_usage_curr"),
-      },
-      max: {
-        value: 0,
-        ref: document.getElementById("cpu_usage_max"),
-      },
-    },
-    fan: {
-      unit: {
-        value: "",
-        ref: document.getElementById("cpu_fan_unit"),
-      },
-      min: {
-        value: 0,
-        ref: document.getElementById("cpu_fan_min"),
-      },
-      current: {
-        value: 0,
-        ref: document.getElementById("cpu_fan_curr"),
-      },
-      max: {
-        value: 0,
-        ref: document.getElementById("cpu_fan_max"),
-      },
-    },
-    clock: {
-      unit: {
-        value: "",
-        ref: document.getElementById("cpu_clock_unit"),
-      },
-      min: {
-        value: 0,
-        ref: document.getElementById("cpu_clock_min"),
-      },
-      current: {
-        value: 0,
-        ref: document.getElementById("cpu_clock_curr"),
-      },
-      max: {
-        value: 0,
-        ref: document.getElementById("cpu_clock_max"),
-      },
-    },
-  },
-  GPU: {
-    name: {
-      value: "GPU",
-      ref: document.getElementById("gpu_name"),
-    },
-    temperature: {
-      unit: {
-        value: "",
-        ref: document.getElementById("gpu_temp_unit"),
-      },
-      min: {
-        value: 0,
-        ref: document.getElementById("gpu_temp_min"),
-      },
-      current: {
-        value: 0,
-        ref: document.getElementById("gpu_temp_curr"),
-      },
-      max: {
-        value: 0,
-        ref: document.getElementById("gpu_temp_max"),
-      },
-    },
-    usage: {
-      unit: {
-        value: "",
-        ref: document.getElementById("gpu_usage_unit"),
-      },
-      min: {
-        value: 0,
-        ref: document.getElementById("gpu_usage_min"),
-      },
-      current: {
-        value: 0,
-        ref: document.getElementById("gpu_usage_curr"),
-      },
-      max: {
-        value: 0,
-        ref: document.getElementById("gpu_usage_max"),
-      },
-    },
-    fan: {
-      unit: {
-        value: "",
-        ref: document.getElementById("gpu_fan_unit"),
-      },
-      min: {
-        value: 0,
-        ref: document.getElementById("gpu_fan_min"),
-      },
-      current: {
-        value: 0,
-        ref: document.getElementById("gpu_fan_curr"),
-      },
-      max: {
-        value: 0,
-        ref: document.getElementById("gpu_fan_max"),
-      },
-    },
-    clock: {
-      unit: {
-        value: "",
-        ref: document.getElementById("gpu_clock_unit"),
-      },
-      min: {
-        value: 0,
-        ref: document.getElementById("gpu_clock_min"),
-      },
-      current: {
-        value: 0,
-        ref: document.getElementById("gpu_clock_curr"),
-      },
-      max: {
-        value: 0,
-        ref: document.getElementById("gpu_clock_max"),
-      },
-    },
-    vram: {
-      usage: {
+      temperature: {
         unit: {
           value: "",
-          ref: document.getElementById("vram_usage_unit"),
+          ref: document.getElementById("cpu_temp_unit")
         },
         min: {
           value: 0,
-          ref: document.getElementById("vram_usage_min"),
+          ref: document.getElementById("cpu_temp_min")
         },
         current: {
           value: 0,
-          ref: document.getElementById("vram_usage_curr"),
+          ref: document.getElementById("cpu_temp_curr")
         },
         max: {
           value: 0,
-          ref: document.getElementById("vram_usage_max"),
+          ref: document.getElementById("cpu_temp_max")
+        }
+      },
+      usage: {
+        unit: {
+          value: "",
+          ref: document.getElementById("cpu_usage_unit")
         },
+        min: {
+          value: 0,
+          ref: document.getElementById("cpu_usage_min")
+        },
+        current: {
+          value: 0,
+          ref: document.getElementById("cpu_usage_curr")
+        },
+        max: {
+          value: 0,
+          ref: document.getElementById("cpu_usage_max")
+        }
+      },
+      fan: {
+        unit: {
+          value: "",
+          ref: document.getElementById("cpu_fan_unit")
+        },
+        min: {
+          value: 0,
+          ref: document.getElementById("cpu_fan_min")
+        },
+        current: {
+          value: 0,
+          ref: document.getElementById("cpu_fan_curr")
+        },
+        max: {
+          value: 0,
+          ref: document.getElementById("cpu_fan_max")
+        }
+      },
+      clock: {
+        unit: {
+          value: "",
+          ref: document.getElementById("cpu_clock_unit")
+        },
+        min: {
+          value: 0,
+          ref: document.getElementById("cpu_clock_min")
+        },
+        current: {
+          value: 0,
+          ref: document.getElementById("cpu_clock_curr")
+        },
+        max: {
+          value: 0,
+          ref: document.getElementById("cpu_clock_max")
+        }
+      }
+    },
+    GPU: {
+      name: {
+        value: "GPU",
+        ref: document.getElementById("gpu_name")
+      },
+      temperature: {
+        unit: {
+          value: "",
+          ref: document.getElementById("gpu_temp_unit")
+        },
+        min: {
+          value: 0,
+          ref: document.getElementById("gpu_temp_min")
+        },
+        current: {
+          value: 0,
+          ref: document.getElementById("gpu_temp_curr")
+        },
+        max: {
+          value: 0,
+          ref: document.getElementById("gpu_temp_max")
+        }
+      },
+      usage: {
+        unit: {
+          value: "",
+          ref: document.getElementById("gpu_usage_unit")
+        },
+        min: {
+          value: 0,
+          ref: document.getElementById("gpu_usage_min")
+        },
+        current: {
+          value: 0,
+          ref: document.getElementById("gpu_usage_curr")
+        },
+        max: {
+          value: 0,
+          ref: document.getElementById("gpu_usage_max")
+        }
+      },
+      fan: {
+        unit: {
+          value: "",
+          ref: document.getElementById("gpu_fan_unit")
+        },
+        min: {
+          value: 0,
+          ref: document.getElementById("gpu_fan_min")
+        },
+        current: {
+          value: 0,
+          ref: document.getElementById("gpu_fan_curr")
+        },
+        max: {
+          value: 0,
+          ref: document.getElementById("gpu_fan_max")
+        }
+      },
+      clock: {
+        unit: {
+          value: "",
+          ref: document.getElementById("gpu_clock_unit")
+        },
+        min: {
+          value: 0,
+          ref: document.getElementById("gpu_clock_min")
+        },
+        current: {
+          value: 0,
+          ref: document.getElementById("gpu_clock_curr")
+        },
+        max: {
+          value: 0,
+          ref: document.getElementById("gpu_clock_max")
+        }
+      },
+      vram: {
+        usage: {
+          unit: {
+            value: "",
+            ref: document.getElementById("vram_usage_unit")
+          },
+          min: {
+            value: 0,
+            ref: document.getElementById("vram_usage_min")
+          },
+          current: {
+            value: 0,
+            ref: document.getElementById("vram_usage_curr")
+          },
+          max: {
+            value: 0,
+            ref: document.getElementById("vram_usage_max")
+          }
+        },
+        used: {
+          unit: {
+            value: "",
+            ref: document.getElementById("vram_used_unit")
+          },
+          min: {
+            value: 0,
+            ref: document.getElementById("vram_used_min")
+          },
+          current: {
+            value: 0,
+            ref: document.getElementById("vram_used_curr")
+          },
+          max: {
+            value: 0,
+            ref: document.getElementById("vram_used_max")
+          }
+        }
+      }
+    },
+    Memory: {
+      name: {
+        value: "Memory",
+        ref: document.getElementById("mem_name")
+      },
+      usage: {
+        unit: {
+          value: "",
+          ref: document.getElementById("mem_usage_unit")
+        },
+        min: {
+          value: 0,
+          ref: document.getElementById("mem_usage_min")
+        },
+        current: {
+          value: 0,
+          ref: document.getElementById("mem_usage_curr")
+        },
+        max: {
+          value: 0,
+          ref: document.getElementById("mem_usage_max")
+        }
       },
       used: {
         unit: {
           value: "",
-          ref: document.getElementById("vram_used_unit"),
+          ref: document.getElementById("mem_used_unit")
         },
         min: {
           value: 0,
-          ref: document.getElementById("vram_used_min"),
+          ref: document.getElementById("mem_used_min")
         },
         current: {
           value: 0,
-          ref: document.getElementById("vram_used_curr"),
+          ref: document.getElementById("mem_used_curr")
         },
         max: {
           value: 0,
-          ref: document.getElementById("vram_used_max"),
+          ref: document.getElementById("mem_used_max")
+        }
+      }
+    },
+    Misc: {
+      name: {
+        value: "Misc",
+        ref: null
+      },
+      fps: {
+        unit: {
+          value: "FPS",
+          ref: document.getElementById("misc_fps_unit")
         },
-      },
+        min: {
+          value: 0,
+          ref: document.getElementById("misc_fps_min")
+        },
+        current: {
+          value: 0,
+          ref: document.getElementById("misc_fps_curr")
+        },
+        max: {
+          value: 0,
+          ref: document.getElementById("misc_fps_max")
+        }
+      }
     },
-  },
-  Memory: {
-    name: {
-      value: "Memory",
-      ref: document.getElementById("mem_name"),
+    update: (e, t) => {
+      e.ref && (e.ref.innerText = t, e.value = t)
     },
-    usage: {
-      unit: {
-        value: "",
-        ref: document.getElementById("mem_usage_unit"),
-      },
-      min: {
-        value: 0,
-        ref: document.getElementById("mem_usage_min"),
-      },
-      current: {
-        value: 0,
-        ref: document.getElementById("mem_usage_curr"),
-      },
-      max: {
-        value: 0,
-        ref: document.getElementById("mem_usage_max"),
-      },
+    set: (e, t, n) => {
+      e.ref && (e.ref.innerText = t, e.value = n)
     },
-    used: {
-      unit: {
-        value: "",
-        ref: document.getElementById("mem_used_unit"),
-      },
-      min: {
-        value: 0,
-        ref: document.getElementById("mem_used_min"),
-      },
-      current: {
-        value: 0,
-        ref: document.getElementById("mem_used_curr"),
-      },
-      max: {
-        value: 0,
-        ref: document.getElementById("mem_used_max"),
-      },
-    },
-  },
-  Misc: {
-    name: {
-      value: "Misc",
-      ref: null,
-    },
-    fps: {
-      unit: {
-        value: "FPS",
-        ref: document.getElementById("misc_fps_unit"),
-      },
-      min: {
-        value: 0,
-        ref: document.getElementById("misc_fps_min"),
-      },
-      current: {
-        value: 0,
-        ref: document.getElementById("misc_fps_curr"),
-      },
-      max: {
-        value: 0,
-        ref: document.getElementById("misc_fps_max"),
-      },
-    },
-  },
-  update: (el, value) => {
-    if (el.ref) {
-      el.ref.innerText = value;
-      el.value = value;
-    }
-  },
-  set: (el, refVal, valueVal) => {
-    if (el.ref) {
-      el.ref.innerText = refVal;
-      el.value = valueVal;
-    }
-  },
-  get: (el) => {
-    return el.value ? el.value : null;
-  },
-};
-
-// SDK Stuff
-MobroSDK.init().then(() => {
-  update();
-  MobroSDK.addChannelListener("general_processor_temperature", (data) => {
-    if (data.payload) {
-      const { sensortype, unit, value, min, max, _hardware } = data.payload;
-
-      if (
-        sensortype === "Temperature" &&
-        _hardware.hardwaretype === "Processor"
-      ) {
-        Hardware.update(Hardware.CPU.temperature.unit, unit);
-        Hardware.set(Hardware.CPU.temperature.min, min + unit, min);
-        Hardware.set(Hardware.CPU.temperature.current, value + unit, value);
-        Hardware.set(Hardware.CPU.temperature.max, max + unit, max);
-        Hardware.update(Hardware.CPU.name, _hardware.title);
-        onCPU_Temp();
+    get: e => e.value ? e.value : null
+  };
+  MobroSDK.init().then(() => {
+    u(), MobroSDK.addChannelListener("general_processor_temperature", e => {
+      if (e.payload) {
+        const {
+          sensortype: t,
+          unit: n,
+          value: a,
+          min: u,
+          max: m,
+          _hardware: r
+        } = e.payload;
+        "Temperature" === t && "Processor" === r.hardwaretype && (l.update(l.CPU.temperature.unit, n), l.set(l.CPU.temperature.min, u + n, u), l.set(l.CPU.temperature.current, a + n, a), l.set(l.CPU.temperature.max, m + n, m), l.update(l.CPU.name, r.title), function() {
+          document.getElementById("cpu_temp").innerHTML = `${l.CPU.temperature.current.value}<span> ${l.CPU.temperature.unit.value}</span>`;
+          const e = document.getElementById("cpu");
+          l.CPU.temperature.current.value > 90 ? e.classList.add("warning") : e.classList.remove("warning")
+        }())
       }
-    }
-  });
-  MobroSDK.addChannelListener("general_processor_usage", (data) => {
-    if (data.payload) {
-      const { sensortype, unit, value, min, max, _hardware } = data.payload;
-
-      if (sensortype === "Usage" && _hardware.hardwaretype === "Processor") {
-        Hardware.update(Hardware.CPU.usage.unit, unit);
-        Hardware.set(
-          Hardware.CPU.usage.min,
-          Math.round(min) + unit,
-          Math.round(min)
-        );
-        Hardware.set(
-          Hardware.CPU.usage.current,
-          Math.round(value) + unit,
-          Math.round(value)
-        );
-        Hardware.set(
-          Hardware.CPU.usage.max,
-          Math.round(max) + unit,
-          Math.round(max)
-        );
-        onCPU_Usage();
+    }), MobroSDK.addChannelListener("general_processor_usage", e => {
+      if (e.payload) {
+        const {
+          sensortype: t,
+          unit: n,
+          value: a,
+          min: u,
+          max: m,
+          _hardware: r
+        } = e.payload;
+        "Usage" === t && "Processor" === r.hardwaretype && (l.update(l.CPU.usage.unit, n), l.set(l.CPU.usage.min, Math.round(u) + n, Math.round(u)), l.set(l.CPU.usage.current, Math.round(a) + n, Math.round(a)), l.set(l.CPU.usage.max, Math.round(m) + n, Math.round(m)), document.getElementById("cpu_load").innerHTML = `${l.CPU.usage.current.value}<span> ${l.CPU.usage.unit.value}</span>`)
       }
-    }
-  });
-  MobroSDK.addChannelListener("general_graphics_temperature", (data) => {
-    if (data.payload) {
-      const { sensortype, unit, value, min, max, _hardware } = data.payload;
-
-      if (
-        sensortype === "Temperature" &&
-        _hardware.hardwaretype === "Graphics"
-      ) {
-        Hardware.update(Hardware.GPU.temperature.unit, unit);
-        Hardware.set(Hardware.GPU.temperature.min, min + unit, min);
-        Hardware.set(Hardware.GPU.temperature.current, value + unit, value);
-        Hardware.set(Hardware.GPU.temperature.max, max + unit, max);
-        Hardware.update(Hardware.GPU.name, _hardware.title);
-        onGPU_Temp();
+    }), MobroSDK.addChannelListener("general_graphics_temperature", e => {
+      if (e.payload) {
+        const {
+          sensortype: t,
+          unit: n,
+          value: a,
+          min: u,
+          max: m,
+          _hardware: r
+        } = e.payload;
+        "Temperature" === t && "Graphics" === r.hardwaretype && (l.update(l.GPU.temperature.unit, n), l.set(l.GPU.temperature.min, u + n, u), l.set(l.GPU.temperature.current, a + n, a), l.set(l.GPU.temperature.max, m + n, m), l.update(l.GPU.name, r.title), function() {
+          document.getElementById("gpu_temp").innerHTML = `${l.GPU.temperature.current.value}<span> ${l.GPU.temperature.unit.value}</span>`;
+          const e = document.getElementById("gpu");
+          l.GPU.temperature.current.value > 90 ? e.classList.add("warning") : e.classList.remove("warning")
+        }())
       }
-    }
-  });
-  MobroSDK.addChannelListener("general_graphics_usage", (data) => {
-    if (data.payload) {
-      const { sensortype, unit, value, min, max, _hardware } = data.payload;
-
-      if (sensortype === "Usage" && _hardware.hardwaretype === "Graphics") {
-        Hardware.update(Hardware.GPU.usage.unit, unit);
-        Hardware.set(
-          Hardware.GPU.usage.min,
-          Math.round(min) + unit,
-          Math.round(min)
-        );
-        Hardware.set(
-          Hardware.GPU.usage.current,
-          Math.round(value) + unit,
-          Math.round(value)
-        );
-        Hardware.set(
-          Hardware.GPU.usage.max,
-          Math.round(max) + unit,
-          Math.round(max)
-        );
-        onGPU_Usage();
+    }), MobroSDK.addChannelListener("general_graphics_usage", e => {
+      if (e.payload) {
+        const {
+          sensortype: t,
+          unit: n,
+          value: a,
+          min: u,
+          max: m,
+          _hardware: r
+        } = e.payload;
+        "Usage" === t && "Graphics" === r.hardwaretype && (l.update(l.GPU.usage.unit, n), l.set(l.GPU.usage.min, Math.round(u) + n, Math.round(u)), l.set(l.GPU.usage.current, Math.round(a) + n, Math.round(a)), l.set(l.GPU.usage.max, Math.round(m) + n, Math.round(m)), document.getElementById("gpu_load").innerHTML = `${l.GPU.usage.current.value}<span> ${l.GPU.usage.unit.value}</span>`)
       }
-    }
-  });
-  MobroSDK.addChannelListener("general_memory_usage", (data) => {
-    if (data.payload) {
-      const { sensortype, unit, value, min, max, _hardware } = data.payload;
-
-      if (sensortype === "Usage" && _hardware.hardwaretype === "Memory") {
-        Hardware.update(Hardware.Memory.usage.unit, unit);
-        Hardware.set(
-          Hardware.Memory.usage.min,
-          Math.round(min) + unit,
-          Math.round(min)
-        );
-        Hardware.set(
-          Hardware.Memory.usage.current,
-          Math.round(value) + unit,
-          Math.round(value)
-        );
-        Hardware.set(
-          Hardware.Memory.usage.max,
-          Math.round(max) + unit,
-          Math.round(max)
-        );
-        Hardware.update(Hardware.Memory.name, _hardware.title);
-        onMemory_Usage();
+    }), MobroSDK.addChannelListener("general_memory_usage", e => {
+      if (e.payload) {
+        const {
+          sensortype: t,
+          unit: n,
+          value: a,
+          min: u,
+          max: m,
+          _hardware: r
+        } = e.payload;
+        "Usage" === t && "Memory" === r.hardwaretype && (l.update(l.Memory.usage.unit, n), l.set(l.Memory.usage.min, Math.round(u) + n, Math.round(u)), l.set(l.Memory.usage.current, Math.round(a) + n, Math.round(a)), l.set(l.Memory.usage.max, Math.round(m) + n, Math.round(m)), l.update(l.Memory.name, r.title), document.getElementById("mem_load").innerHTML = `${l.Memory.usage.current.value}<span> ${l.Memory.usage.unit.value}</span>`)
       }
-    }
-  });
-  MobroSDK.addChannelListener("general_memory_used", (data) => {
-    if (data.payload) {
-      const { sensortype, unit, value, min, max, _hardware } = data.payload;
-
-      if (sensortype === "Data" && _hardware.hardwaretype === "Memory") {
-        const nMin = min.toPrecision(3);
-        const nCurr = value.toPrecision(3);
-        const nMax = max.toPrecision(3);
-        Hardware.update(Hardware.Memory.used.unit, unit);
-        Hardware.set(Hardware.Memory.used.min, nMin + unit, nMin);
-        Hardware.set(Hardware.Memory.used.current, nCurr + unit, nCurr);
-        Hardware.set(Hardware.Memory.used.max, nMax + unit, nMax);
-        Hardware.update(Hardware.Memory.name, _hardware.title);
-        onMemory_Used();
+    }), MobroSDK.addChannelListener("general_memory_used", e => {
+      if (e.payload) {
+        const {
+          sensortype: t,
+          unit: n,
+          value: a,
+          min: u,
+          max: m,
+          _hardware: r
+        } = e.payload;
+        if ("Data" === t && "Memory" === r.hardwaretype) {
+          const e = u.toPrecision(3),
+            t = a.toPrecision(3),
+            o = m.toPrecision(3);
+          l.update(l.Memory.used.unit, n), l.set(l.Memory.used.min, e + n, e), l.set(l.Memory.used.current, t + n, t), l.set(l.Memory.used.max, o + n, o), l.update(l.Memory.name, r.title), document.getElementById("mem_used").innerHTML = `${l.Memory.used.current.value}<span> ${l.Memory.used.unit.value}</span>`
+        }
       }
-    }
-  });
-
-  MobroSDK.addChannelListener("theme_fan_speed_cpu", (data) => {
-    if (data.payload) {
-      const { unit, value, min, max } = data.payload;
-      const nMin = min ? min : 0;
-      const nCurr = value ? value : 0;
-      const nMax = max ? max : 0;
-      const nUnit = unit ? unit : "RPM";
-      Hardware.update(Hardware.CPU.fan.unit, nUnit);
-      Hardware.set(Hardware.CPU.fan.min, nMin + nUnit, nMin);
-      Hardware.set(Hardware.CPU.fan.current, nCurr + nUnit, nCurr);
-      Hardware.set(Hardware.CPU.fan.max, nMax + nUnit, nMax);
-      onCPU_Fan();
-    }
-  });
-  MobroSDK.addChannelListener("theme_clock_speed_cpu", (data) => {
-    if (data.payload) {
-      const { unit, value, min, max } = data.payload;
-      const nMin = min ? parseInt(min) : 0;
-      const nCurr = value ? parseInt(value) : 0;
-      const nMax = max ? parseInt(max) : 0;
-      const nUnit = unit ? unit : "";
-      Hardware.update(Hardware.CPU.clock.unit, nUnit);
-      Hardware.set(Hardware.CPU.clock.min, nMin + nUnit, nMin);
-      Hardware.set(Hardware.CPU.clock.current, nCurr + nUnit, nCurr);
-      Hardware.set(Hardware.CPU.clock.max, nMax + nUnit, nMax);
-      onCPU_Clock();
-    }
-  });
-  MobroSDK.addChannelListener("theme_fan_speed_gpu", (data) => {
-    if (data.payload) {
-      const { unit, value, min, max } = data.payload;
-      const nMin = min ? min : 0;
-      const nCurr = value ? value : 0;
-      const nMax = max ? max : 0;
-      const nUnit = unit ? unit : "RPM";
-      Hardware.update(Hardware.GPU.fan.unit, nUnit);
-      Hardware.set(Hardware.GPU.fan.min, nMin + nUnit, nMin);
-      Hardware.set(Hardware.GPU.fan.current, nCurr + nUnit, nCurr);
-      Hardware.set(Hardware.GPU.fan.max, nMax + nUnit, nMax);
-      onGPU_Fan();
-    }
-  });
-  MobroSDK.addChannelListener("theme_clock_speed_gpu", (data) => {
-    if (data.payload) {
-      const { unit, value, min, max } = data.payload;
-      const nMin = min ? parseInt(min) : 0;
-      const nCurr = value ? parseInt(value) : 0;
-      const nMax = max ? parseInt(max) : 0;
-      const nUnit = unit ? unit : "";
-      Hardware.update(Hardware.GPU.clock.unit, nUnit);
-      Hardware.set(Hardware.GPU.clock.min, nMin + nUnit, nMin);
-      Hardware.set(Hardware.GPU.clock.current, nCurr + nUnit, nCurr);
-      Hardware.set(Hardware.GPU.clock.max, nMax + nUnit, nMax);
-      onGPU_Clock();
-    }
-  });
-  MobroSDK.addChannelListener("theme_vram", (data) => {
-    if (data.payload) {
-      const { sensortype, unit, value, min, max, _hardware } = data.payload;
-
-      if (sensortype === "Data" && _hardware.hardwaretype === "Graphics") {
-        const nMin = Math.round(min);
-        const nCurr = Math.round(value);
-        const nMax = Math.round(max);
-
-        Hardware.update(Hardware.GPU.vram.used.unit, unit);
-        Hardware.set(Hardware.GPU.vram.used.min, nMin + unit, nMin);
-        Hardware.set(Hardware.GPU.vram.used.current, nCurr + unit, nCurr);
-        Hardware.set(Hardware.GPU.vram.used.max, nMax + unit, nMax);
-        onVRam_Used();
+    }), MobroSDK.addChannelListener("theme_fan_speed_cpu", e => {
+      if (e.payload) {
+        const {
+          unit: t,
+          value: n,
+          min: a,
+          max: u
+        } = e.payload, m = a || 0, r = n || 0, o = u || 0, c = t || "RPM";
+        l.update(l.CPU.fan.unit, c), l.set(l.CPU.fan.min, m + c, m), l.set(l.CPU.fan.current, r + c, r), l.set(l.CPU.fan.max, o + c, o),
+          function() {
+            const e = 100 - l.CPU.fan.current.value / 3e3 * 100,
+              t = parseInt(e >= 100 ? 0 : 7 * e);
+            document.getElementById("cpu_fan").innerHTML = `${l.CPU.fan.current.value}<span>${l.CPU.fan.unit.value}</span>`, document.getElementById("cpu_fan_anima").style = `animation: spin ${t}ms linear infinite;`
+          }()
       }
-    }
-  });
-  MobroSDK.addChannelListener("theme_vram_percentage", (data) => {
-    if (data.payload) {
-      const { sensortype, unit, value, min, max, _hardware } = data.payload;
-
-      if (sensortype === "Usage" && _hardware.hardwaretype === "Graphics") {
-        Hardware.update(Hardware.GPU.vram.usage.unit, unit);
-        Hardware.set(
-          Hardware.GPU.vram.usage.min,
-          Math.round(min) + unit,
-          Math.round(min)
-        );
-        Hardware.set(
-          Hardware.GPU.vram.usage.current,
-          Math.round(value) + unit,
-          Math.round(value)
-        );
-        Hardware.set(
-          Hardware.GPU.vram.usage.max,
-          Math.round(max) + unit,
-          Math.round(max)
-        );
-        onVRam_Usage();
+    }), MobroSDK.addChannelListener("theme_clock_speed_cpu", e => {
+      if (e.payload) {
+        const {
+          unit: t,
+          value: n,
+          min: a,
+          max: u
+        } = e.payload, m = a ? parseInt(a) : 0, r = n ? parseInt(n) : 0, o = u ? parseInt(u) : 0, c = t || "";
+        l.update(l.CPU.clock.unit, c), l.set(l.CPU.clock.min, m + c, m), l.set(l.CPU.clock.current, r + c, r), l.set(l.CPU.clock.max, o + c, o), document.getElementById("cpu_curr_clock").innerHTML = `${l.CPU.clock.current.value}<span> ${l.CPU.clock.unit.value.toLocaleUpperCase()}</span>`
       }
-    }
-  });
-
-  MobroSDK.addChannelListener("theme_FPS", (data) => {
-    if (data.payload) {
-      const { unit, value, min, max } = data.payload;
-      if (value != null) {
-        Hardware.update(Hardware.GPU.vram.usage.unit, unit);
-        Hardware.set(Hardware.Misc.fps.min, min + unit, min);
-        Hardware.set(Hardware.Misc.fps.current, value + unit, value);
-        Hardware.set(Hardware.Misc.fps.max, max + unit, max);
-        onMisc_Fps();
+    }), MobroSDK.addChannelListener("theme_fan_speed_gpu", e => {
+      if (e.payload) {
+        const {
+          unit: t,
+          value: n,
+          min: a,
+          max: u
+        } = e.payload, m = a || 0, r = n || 0, o = u || 0, c = t || "RPM";
+        l.update(l.GPU.fan.unit, c), l.set(l.GPU.fan.min, m + c, m), l.set(l.GPU.fan.current, r + c, r), l.set(l.GPU.fan.max, o + c, o),
+          function() {
+            const e = 100 - l.GPU.fan.current.value / 4e3 * 100,
+              t = parseInt(e >= 100 ? 0 : 7 * e);
+            document.getElementById("gpu_fan").innerHTML = `${l.GPU.fan.current.value}<span>${l.GPU.fan.unit.value}</span>`, document.getElementById("gpu_fan_anima").style = `animation: spin ${t}ms linear infinite;`
+          }()
       }
-    }
-  });
-});
+    }), MobroSDK.addChannelListener("theme_clock_speed_gpu", e => {
+      if (e.payload) {
+        const {
+          unit: t,
+          value: n,
+          min: a,
+          max: u
+        } = e.payload, m = a ? parseInt(a) : 0, r = n ? parseInt(n) : 0, o = u ? parseInt(u) : 0, c = t || "";
+        l.update(l.GPU.clock.unit, c), l.set(l.GPU.clock.min, m + c, m), l.set(l.GPU.clock.current, r + c, r), l.set(l.GPU.clock.max, o + c, o), document.getElementById("gpu_curr_clock").innerHTML = `${l.GPU.clock.current.value}<span> ${l.GPU.clock.unit.value.toLocaleUpperCase()}</span>`
+      }
+    }), MobroSDK.addChannelListener("theme_vram", e => {
+      if (e.payload) {
+        const {
+          sensortype: t,
+          unit: n,
+          value: a,
+          min: u,
+          max: m,
+          _hardware: r
+        } = e.payload;
+        if ("Data" === t && "Graphics" === r.hardwaretype) {
+          const e = Math.round(u),
+            t = Math.round(a),
+            r = Math.round(m);
+          l.update(l.GPU.vram.used.unit, n), l.set(l.GPU.vram.used.min, e + n, e), l.set(l.GPU.vram.used.current, t + n, t), l.set(l.GPU.vram.used.max, r + n, r), document.getElementById("vram_used").innerHTML = `${l.GPU.vram.used.current.value}<span> ${l.GPU.vram.used.unit.value}</span>`
+        }
+      }
+    }), MobroSDK.addChannelListener("theme_vram_percentage", e => {
+      if (e.payload) {
+        const {
+          sensortype: t,
+          unit: n,
+          value: a,
+          min: u,
+          max: m,
+          _hardware: r
+        } = e.payload;
+        "Usage" === t && "Graphics" === r.hardwaretype && (l.update(l.GPU.vram.usage.unit, n), l.set(l.GPU.vram.usage.min, Math.round(u) + n, Math.round(u)), l.set(l.GPU.vram.usage.current, Math.round(a) + n, Math.round(a)), l.set(l.GPU.vram.usage.max, Math.round(m) + n, Math.round(m)), document.getElementById("vram_load").innerHTML = `${l.GPU.vram.usage.current.value}<span> ${l.GPU.vram.usage.unit.value}</span>`)
+      }
+    }), MobroSDK.addChannelListener("theme_FPS", e => {
+      if (e.payload) {
+        const {
+          unit: t,
+          value: n,
+          min: a,
+          max: u
+        } = e.payload;
+        null != n && (l.update(l.GPU.vram.usage.unit, t), l.set(l.Misc.fps.min, a + t, a), l.set(l.Misc.fps.current, n + t, n), l.set(l.Misc.fps.max, u + t, u), document.getElementById("fps_load").innerHTML = `${l.Misc.fps.current.value}<span> ${l.Misc.fps.unit.value}</span>`)
+      }
+    })
+  })
+}]);
+//# sourceMappingURL=script.js.map
