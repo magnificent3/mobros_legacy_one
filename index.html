@@ -193,7 +193,7 @@
         </tr>
     </table>
 
-    <header id="header" class="hide">One <span>Ui</span></header>
+    <header id="header" style="display: none" class="hide">One <span>Ui</span></header>
     <div id="main" class="container">
         <div style="display: none;" id="time" class="card">
             <div class="type">
@@ -201,12 +201,12 @@
                 <p>TIME</p>
             </div>
 
-            <div class="pill" style="opacity: .3;">
+            <div class="pill" style="opacity: 0;">
                 <i class="ri-temp-cold-fill"></i>
                 <div id="time_id2" class="pill-txt lime"><span>°c</span></div>
             </div>
             <div id="time_curr" class="load loadClock lime">6:01<span>N/A</span></div>
-            <div class="pillDown" style="opacity: .3;">
+            <div class="pillDown" style="opacity: 0;">
                 <div id="time_id3" class="pillDown-txt lime">-<span>N/A</span></div>
                 <i class="ri-dashboard-2-line"></i>
             </div>
@@ -235,12 +235,12 @@
                 <p>CPU clock</p>
             </div>
 
-            <div class="pill" style="opacity: .3;">
+            <div class="pill" style="opacity: 0;">
                 <i class="ri-temp-cold-fill"></i>
                 <div id="cpu_clock_dummy1" class="pill-txt blue">-<span>°c</span></div>
             </div>
             <div id="cpu_curr_clock" class="load loadClock blue">0</div>
-            <div class="pillDown" style="opacity: .3;">
+            <div class="pillDown" style="opacity: 0;">
                 <div id="cpu_clock_dummy2" class="pillDown-txt blue">-<span>MHZ</span></div>
                 <i class="ri-dashboard-2-line"></i>
             </div>
@@ -269,12 +269,12 @@
                 <p>FPS</p>
             </div>
 
-            <div class="pill" style="opacity: .3;">
+            <div class="pill" style="opacity: 0;">
                 <i class="ri-temp-cold-fill"></i>
                 <div class="pill-txt yellow">-<span>°c</span></div>
             </div>
             <div id="fps_load" class="load yellow">0<span> FPS</span></div>
-            <div class="pillDown" style="opacity: .3;">
+            <div class="pillDown" style="opacity: 0;">
                 <div id="fps_max" class="pillDown-txt yellow">-</div>
                 <i class="ri-dashboard-2-line"></i>
             </div>
@@ -304,12 +304,12 @@
                 <p>GPU clock</p>
             </div>
 
-            <div class="pill" style="opacity: .3;">
+            <div class="pill" style="opacity: 0;">
                 <i class="ri-temp-cold-fill"></i>
                 <div id="gpu_clock_dummy1" class="pill-txt blue">-<span>°c</span></div>
             </div>
             <div id="gpu_curr_clock" class="load loadClock blue">0</div>
-            <div class="pillDown" style="opacity: .3;">
+            <div class="pillDown" style="opacity: 0;">
                 <div id="gpu_clock_dummy2" class="pillDown-txt blue">-<span>MHZ</span></div>
                 <i class="ri-dashboard-2-line"></i>
             </div>
@@ -336,7 +336,7 @@
 
 
     <div id="settings" class="settings hideSettings">
-        <button onclick="showhideSettings()" id="open_settings" class="openSettings">
+        <button onclick="showhideSettings()" style="display: none" id="open_settings" class="openSettings">
             <i class="ri-settings-fill"></i>
         </button>
         <div class="settings-head">
